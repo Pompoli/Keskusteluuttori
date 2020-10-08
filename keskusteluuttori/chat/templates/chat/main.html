@@ -1,0 +1,27 @@
+{% extends "./master.html" %}
+
+{% block maincontent %}
+<div class="container">
+  <h1 class="title">Keskusteluuttori</h1>
+  <div id="speakers_menu">
+    1. Edit speakers:
+    <div class="menu_item">
+      <a href="speaker/1" class="link">Edit speaker 1</a>
+    </div>
+    <div class="menu_item">
+      <a href="speaker/2" class="link">Edit speaker 2</a>
+    </div>
+  </div>
+  <div id="conversations_menu">
+    2. Choose conversation:
+    {% for conversation in conversations %}
+      <div class="menu_item">
+        <a href="chat/{{conversation.pk}}" class="link">{{conversation.name}}</a>
+        {% if conversation.description %}
+          <br/>{{conversation.description}}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

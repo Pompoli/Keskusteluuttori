@@ -1,0 +1,360 @@
+// Variables
+@background: #232426;
+@button: gray;
+@button2: lightgray;
+@buttonborder: black;
+@buttonborder2: white;
+@warm: #ff9900;
+@cold: spin(@warm, 180);
+@neutral: #141414;
+@trait_max: 10;
+@border-radius: 10px;
+@border-bottom-radius: 60%;
+@green: #63b243;
+
+@font-face {
+    font-family: 'cabinsketch';
+    src: url('./fonts/cabinsketch-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ffftusj';
+    src: url('./fonts/Walkway_Bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@traitpicker-font: 'cabinsketch';
+@bubble-font: 'ffftusj';
+@traitpicer-maxwidth: 350px;
+
+html, body {
+  background: @background;
+  margin: 0;
+
+}
+
+.label-input {
+  padding: 6px;
+  color: white;
+  display: flex;
+  font-family: @traitpicker-font, Arial, sans-serif;
+  font-size: 1.2rem;
+  .labelholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+  input {
+    width: 100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  label {
+    padding: 14px;
+    display: block;
+    border: 2px solid @buttonborder;
+    border-left-color: @buttonborder2;
+    border-top-color: @buttonborder2;
+    border-radius: @border-radius;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: @button;
+    margin: 0;
+
+  }
+}
+input {
+  background: @neutral;
+  color: white;
+  border: 2px solid @buttonborder;
+  border-left-color: @buttonborder2;
+  border-top-color: @buttonborder2;
+  padding: 0.8em;
+  min-width: 50px;
+  border-radius: @border-radius;
+  font-family: @traitpicker-font, Arial, sans-serif;
+  font-size: 1.2rem;
+  &:focus {
+
+    border-color: @buttonborder2;
+    border-left-color: @buttonborder;
+    border-top-color: @buttonborder;
+  }
+
+}
+.margin {
+  padding: 6px;
+}
+.button {
+  border-radius: @border-radius;
+  padding: 14px;
+  text-align: center;
+  font-family: @traitpicker-font, Arial, sans-serif;
+  color: white;
+  border: 2px solid @buttonborder;
+  font-size: 1.2rem;
+  height: 100%;
+  background: @button;
+  border-top-color: @buttonborder2;
+  border-left-color: @buttonborder2;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    background: @button2;
+    border-color: @buttonborder2;
+    border-top-color: @buttonborder;
+    border-left-color: @buttonborder;
+  }
+  &.left {
+  //  border-top-left-radius: 50%;
+    border-bottom-left-radius: @border-bottom-radius;
+  }
+  &.right {
+  //  border-top-right-radius: 50%;
+    border-bottom-right-radius: @border-bottom-radius;
+  }
+  &.round {
+    border-radius: 50%;
+    padding: 7px;
+    display: inline-block;
+    line-height: 7px;
+    vertical-align: middle;
+    text-align: center;
+  }
+  &.green {
+    background: @green;
+  }
+}
+
+#conversations_menu, #speakers_menu {
+  color: lightgray;
+  margin-top: 1rem;
+}
+
+.menu_item {
+  margin-left: 1rem;
+  margin-top: .5rem;
+}
+
+h1.title {
+  color: white;
+}
+a.link {
+  color: white;
+  font-size: 1.3rem;
+}
+
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.traitpickers {
+  justify-content: center;
+}
+
+.traitpicker {
+  text-align: center;
+  padding: 6px;
+  max-width: @traitpicer-maxwidth;
+  font-family: @traitpicker-font, Arial, sans-serif;
+  @iterations: @trait_max;
+  .color-loop (@i) when (@i > 0) {
+      .color-warm-@{i} {
+        background-color: mix(@warm, @neutral, @i*10%);
+      }
+      .color-cold-@{i} {
+        background-color: mix(@cold, @neutral, @i*10%);
+      }
+      .color-loop(@i - 1);
+  }
+  .color-loop (@iterations);
+  .color-neutral {
+    background: @neutral;
+  }
+  * {
+    transition: background-color 0.5s ease;
+  }
+  .title {
+    border: 2px solid @buttonborder;
+    border-top-color: @buttonborder2;
+    border-left-color: @buttonborder2;
+
+    font-size: 1.3rem;
+    color: white;
+    border-top-left-radius: @border-radius;
+    border-top-right-radius: @border-radius;
+  }
+  .controller {
+
+    font-size: 2rem;
+
+    display: flex;
+    .button {
+      color: black;
+      padding: 0;
+      font-size: inherit;
+      border: 2px solid @buttonborder;
+      flex-grow: 3;
+      border-radius: 0;
+      background: @button;
+      border-top-color: @buttonborder2;
+      border-left-color: @buttonborder2;
+      &:hover {
+        cursor: pointer;
+      }
+      &:active {
+        background: @button2;
+        border-color: @buttonborder2;
+        border-top-color: @buttonborder;
+        border-left-color: @buttonborder;
+      }
+      &.left {
+      //  border-top-left-radius: 50%;
+        border-bottom-left-radius: @border-bottom-radius;
+      }
+      &.right {
+      //  border-top-right-radius: 50%;
+        border-bottom-right-radius: @border-bottom-radius;
+      }
+
+    }
+    .display {
+      color: white;
+      flex-grow: 1;
+      width: 40%;
+      border-top: 2px solid @buttonborder2;
+      border-bottom: 2px solid @buttonborder;
+    }
+  }
+}
+#bubbles .bubblecontainer:nth-child(even) .bubble,
+#choicebox.speaker2 .bubble {
+  margin-left: auto;
+  text-align: right;
+  background: mix(@warm, @neutral, 70%);
+  border: 2px solid mix(@warm, @neutral, 90%);
+  animation: 2s enter-left;
+  &.exit {
+    animation: 1.5s exit-left !important;
+    left: -100%;
+  }
+}
+
+#choicebox {
+  border-top: 2px solid white;
+  max-width: none;
+  padding: 2rem 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: unset;
+  min-height: 40%;
+  &.speaker2 .bubble:not(.disabled):hover, &.speaker2 .bubble.selected:not(.disabled) {
+    background: mix(@warm, @neutral, 90%);
+  }
+  .bubble:not(.disabled) {
+    cursor: pointer;
+    &:hover, &.selected {
+      background: mix(@cold, @neutral, 90%);
+    }
+  }
+}
+
+#bubbles {
+  overflow: hidden;
+}
+
+.bubble {
+  background: mix(@cold, @neutral, 70%);
+  border: 2px solid mix(@cold, @neutral, 90%);
+  color: white;
+  padding: 1rem;
+  margin: 0.5rem 1rem;
+
+  border-radius: @border-radius;
+  font-family: @bubble-font;
+  font-size: 1.2rem;
+
+  animation: 1.5s enter-right;
+  .choiceno {
+    float: left;
+    margin-right: 4px;
+  }
+  &.exit {
+    animation: 1.5s exit-right !important;
+    right: -100%;
+  }
+  &.exit-still {
+    animation: 1.5s exit-still !important;
+    opacity: 0;
+  }
+  &.disabled {
+
+  }
+}
+
+@keyframes exit-left {
+  from {
+    left: 0;
+    opacity: 1;
+  }
+  to {
+    left: -100%;
+    opacity: 0.2;
+  }
+}
+
+@keyframes exit-right {
+  from {
+    right: 0;
+    opacity: 1;
+  }
+  to {
+    right: -100%;
+    opacity: 0.2;
+  }
+}
+
+@keyframes enter-left {
+  from {
+    left: -100%;
+    opacity: 0.2;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes enter-right {
+  from {
+    right: -100%;
+    opacity: 0.2;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes exit-still {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

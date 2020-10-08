@@ -1,0 +1,13 @@
+{% load static %}
+{% load compress %}
+
+{% compress css %}
+  <link href="{% static 'chat/styles.less' %}" media="all" rel="stylesheet" type="text/less"/>
+{% endcompress %}
+
+{% include './traitpickers.html' %}
+
+{% compress js %}
+<script type="text/javascript" src="{% static 'chat/js/jquery-3.3.1.min.js' %}" />
+<script type="text/coffeescript" charset="utf-8" src="{% static 'chat/js/traitpicker.coffee' %}" />
+{% endcompress %}

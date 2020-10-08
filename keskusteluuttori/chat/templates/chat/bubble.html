@@ -1,0 +1,17 @@
+<div class="bubblecontainer row">
+<div class="bubble col-7">
+  {{ message }}
+<div>
+</div>
+<script>
+  $(document).ready(function() {
+    lines.list=[];
+    {% for l in line.answers.all %}
+      lines.list.push({{l.pk}})
+    {% endfor %}
+    {% for l in line.answers_extra.all %}
+      lines.list.push({{l.pk}})
+    {% endfor %}
+
+  });
+</script>

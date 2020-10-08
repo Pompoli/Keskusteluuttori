@@ -1,0 +1,9 @@
+{% extends "./master.html" %}
+{% load compress %}
+{% load static %}
+{% block maincontent %}
+  {%if not conversation.startline.all%}<div class="round green button">+</div>{% else %}?{% endif %}
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

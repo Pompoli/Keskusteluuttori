@@ -1,0 +1,7 @@
+{% for trait in traits %}
+  {% if col == 12 %}
+    {% include './traitpicker.html' with col=12 col_sm=6 col_md=4 col_lg=3 %}
+  {% elif col == 6 %}
+    {% include './traitpicker.html' with col=12 col_sm=12 col_md=12 col_lg=6 %}
+  {% endif %}
+{% endfor %}

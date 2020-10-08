@@ -1,0 +1,38 @@
+{% extends "./master.html" %}
+{% load compress %}
+{% load static %}
+{% block maincontent %}
+  <div id="bubbles" class="container">
+  </div>
+  <div id="choicebox" class="container">
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+    var speaker1= {
+      'name': '{{speaker1.name}}',
+      'pk': {{speaker1.pk}},
+      'traits': [],
+      'cpu': {% if speaker1.cpu %}true{% else %}false{% endif %}
+    };
+    {% for trait in speaker1_traits %}
+      speaker1.traits.push({'type_id':{{trait.type_id}}, 'value':{{trait.value}}})
+    {% endfor %}
+
+    var speaker2= {
+      'name': '{{speaker2.name}}',
+      'pk': {{speaker2.pk}},
+      'cpu': {% if speaker2.cpu %}true{% else %}false{% endif %}
+    };
+    var lines = {list: []};
+    {% for line in conversation.startline.all %}
+      lines.list.push({{line.pk}})
+    {% endfor %}
+
+</script>
+{% compress js %}
+<script type="text/coffeescript" charset="utf-8" src="{% static 'chat/js/chat.coffee' %}" />
+{% endcompress %}
+{% endblock %}

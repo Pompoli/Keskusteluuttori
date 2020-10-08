@@ -1,0 +1,5 @@
+{% for line in lines %}
+  <div class="bubble col-7 disabled" data-message="{{line.message}}" data-line={{line.line.pk}}>
+    <span class="choiceno">{{ forloop.counter }} )</span> {{line.message}}
+  </div>
+{% endfor %}

@@ -1,0 +1,11 @@
+{% load i18n %}
+<div class="traitpicker noselect col-12 col-xs-12 col-sm-{{col_sm}} col-md-{{col_md}} col-lg-{{col_lg}}" data-trait-pk={{trait.pk}} data-trait-name={{trait.name}} data-trait-opposite={{trait.opposite}} >
+  <div class="title color-neutral">
+    {{trait}} / {{trait.opposite}}
+  </div>
+  <div class="controller">
+    <div class="button left">-</div>
+    <div class="display color-neutral">0</div>
+    <div class="button right">+</div>
+  </div>
+</div>

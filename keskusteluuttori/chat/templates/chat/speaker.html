@@ -1,0 +1,40 @@
+{% extends "./master.html" %}
+{% load compress %}
+{% load static %}
+{% block maincontent %}
+
+  <div class="row traitpickers">
+    <div class="label-input col-sm-6 col-xs-12">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" value="{{speaker.name}}" autocomplete="off" />
+    </div>
+    <div class="margin col-sm-6 col-xs-12">
+    <div class="button submit">
+      Save
+    </div>
+    </div>
+  {% include './traitpickers.html' with col=12 %}
+  </div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+    var SPEAKER= {};
+    SPEAKER.traits=
+      {% if speaker %}
+        {
+        {% for trait in speaker.traits.all %}
+          '{{trait.type.pk}}':{{trait.value}},
+        {% endfor %}
+        }
+      {% else %}
+      {}
+      {% endif %};
+    SPEAKER.name='{{speaker.name|default:""}}';
+
+</script>
+{% compress js %}
+<script type="text/coffeescript" charset="utf-8" src="{% static 'chat/js/traitpicker.coffee' %}" />
+<script type="text/coffeescript" charset="utf-8" src="{% static 'chat/js/speakereditor.coffee' %}" />
+
+{% endcompress %}
+{% endblock %}
