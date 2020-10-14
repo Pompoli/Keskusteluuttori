@@ -43,7 +43,6 @@ INSTALLED_APPS = [
 
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
-    ('text/coffeescript', 'coffee --compile --stdio'),
 )
 
 MIDDLEWARE = [
